@@ -1,17 +1,17 @@
-#Benemerita Universidad Autonoma de Puebla
-#Desarrollado por: Jose Ernesto Munoz Cabanas 
-#Facultad de Ciencias de la Computacion
-#Proyecto para proceso de admision a la Maestria en sistemas distribuidos
-#Implementacion de representacion grafica de un grafo de conflictos y aplicacion de algoritmos de coloreo para
-#la optimizacion de University Timetabling Problem.
-#Librerias
+#Benemérita Universidad Autónoma de Puebla
+#Desarrollado por: José Ernesto Muñoz Cabañas 
+#Facultad de Ciencias de la Computación
+#Proyecto para proceso de admisión a la Maestria en sistemas distribuidos
+#Implementación de representación gráfica de un grafo de conflictos y aplicación de algoritmos de coloreo para
+#la optimización de University Timetabling Problem.
+#Librerías
 import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 import networkx as nx
 from tkinter import messagebox
 
-#Construccion del grafo de conflictos en base a lista de adyacencia
+#Construcción del grafo de conflictos en base a lista de adyacencia
 def construir_grafo(adj):
     G = nx.Graph()
     for u in adj:
@@ -21,7 +21,7 @@ def construir_grafo(adj):
 
 # ALGORITMOS
 
-#Algoritmo de coloreo secuencial vorazon Greedy
+#Algoritmo de coloreo secuencial voraz o Greedy
 def greedy(adj):
     colores = {}
     for nodo in adj:
@@ -32,7 +32,7 @@ def greedy(adj):
         colores[nodo] = c
     return colores
 
-#Algoritmo de coloreo de Daniel Brelaz DSATUR 
+#Algoritmo de coloreo de Daniel Brelaz o DSATUR 
 def dsatur(adj):
     vertices = list(adj.keys())
     col = {v: None for v in vertices}
@@ -52,7 +52,7 @@ def dsatur(adj):
 
     return col
 
-#Algorito de coloreo exacto de BROWN
+#Algoritmo de coloreo exacto de BROWN
 def brown(adj):
     G = construir_grafo(adj)
     best = None
@@ -130,7 +130,7 @@ class EntradaGrafo:
         if n <= 0:
             messagebox.showerror("Error", "El número debe ser mayor que 0")
             return
-        
+        # Validar que no tenga mas de 50 vértices
         if n > 50:
             messagebox.showerror("Error", "Máximo 50 vértices permitido")
             return
@@ -150,7 +150,7 @@ class EntradaGrafo:
 
         tk.Button(self.frame, text="Continuar", command=self.procesar).pack(pady=20)
 
-    #Se crea la lista de adyacencia como estructura de datos 
+    # Se crea la lista de adyacencia como estructura de datos 
     def procesar(self):
         adj = {}
 
