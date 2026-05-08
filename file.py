@@ -39,10 +39,10 @@ def dsatur(adj):
 
     def sat(v):
         return len({col[u] for u in adj[v] if col[u]})
-
+    #mMientras haya vértices sin colorear sigue el proceso
     while None in col.values():
         v = max([x for x in vertices if col[x] is None],
-                key=lambda x: (sat(x), len(adj[x])))
+                key=lambda x: (sat(x), len(adj[x]))) # Compara tuplas de grado de saturacion y grado general para todos los elementos dentro de x
 
         usados = {col[u] for u in adj[v] if col[u]}
         c = 1
@@ -54,6 +54,7 @@ def dsatur(adj):
 
 #Algorito de coloreo exacto de BROWN
 def brown(adj):
+    #Grafica y obtiene el límite superior en el peor caso que equivale al número n de vértices.
     G = construir_grafo(adj)
     best = None
     ub = len(G.nodes())
@@ -79,7 +80,7 @@ def brown(adj):
         for c in range(1, ub+1):
             if c not in usados:
                 coloring[v] = c
-                backtrack(coloring)
+                backtrack(coloring) 
                 del coloring[v]
 
     backtrack({})
